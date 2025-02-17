@@ -48,5 +48,5 @@ If files are inside subfolders, update paths in HTML files accordingly.
 4. Use the sidebar to access:
 5. To-Do List `todo.html` to add/manage tasks.
 6. Reminders `reminder.html` to set notifications.
-7.Notes `notetaking.html` to write down important points.
-8.To register a new user, go to `register.html`.
+7. Notes `notetaking.html` to write down important points.
+8. To register a new user, go to `register.html`.
