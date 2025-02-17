@@ -42,11 +42,11 @@ Before running the project, ensure all internal file paths are correctly referen
 If files are inside subfolders, update paths in HTML files accordingly.
 
 3️⃣ Usage Guide
-1. Open login.html in a browser.
+1. Open `login.html` in a browser.
 2. Enter Username: Rani and Password: Rani@2003 (default test credentials).
 3. Click "Log In" to navigate to the main dashboard.
 4. Use the sidebar to access:
-5. To-Do List (todo.html) to add/manage tasks.
-6. Reminders (reminder.html) to set notifications.
-7.Notes (notetaking.html) to write down important points.
-8.To register a new user, go to register.html .
+5. To-Do List `todo.html` to add/manage tasks.
+6. Reminders `reminder.html` to set notifications.
+7.Notes `notetaking.html` to write down important points.
+8.To register a new user, go to `register.html`.
