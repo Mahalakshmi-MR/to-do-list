@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reminder</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1b4d89;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: #768aa14b;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: center;
+    }
+    h1 {
+      text-align: center;
+      color: #fff;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    .reminder-form {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    .reminder-form input[type="text"] {
+      flex: 1;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+    }
+    .reminder-form button {
+      padding: 8px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #fff;
+      color: #000000;
+      cursor: pointer;
+    }
+    .reminder-form button:hover {
+      background-color: #ffffff77;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+    li:last-child {
+      border-bottom: none;
+    }
+    .back {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: #fff;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .back:hover {
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>My Reminder </h1>
+    <!-- Reminder Form -->
+    <div class="reminder-form">
+      <input type="text" id="reminderInput" placeholder="Enter your reminder">
+      <input type="datetime-local" id="reminderTime">
+      <button onclick="addReminder()">Add</button>
+    </div>
+    <!-- Reminder List -->
+    <ul id="reminderList"></ul>
+  </div>
+  <!-- Audio element for alarm sound -->
+  <audio id="alarm" src="C:\Users\admin04\Desktop\6th sem\miniproject\alarm sound\best_alarm.mp3"></audio>
+  <script>
+    window.onload = function () {
+      loadReminders();
+    };
+
+    function addReminder() {
+      const reminderInput = document.getElementById('reminderInput');
+      const reminderTime = document.getElementById('reminderTime');
+      const reminderText = reminderInput.value.trim();
+      const timeValue = reminderTime.value;
+
+      if (reminderText !== '' && timeValue !== '') {
+        const currentTime = new Date().getTime();
+        const reminderDateTime = new Date(timeValue).getTime();
+
+        if (reminderDateTime <= currentTime) {
+          alert('Please enter a future time for the reminder!');
+          return;
+        }
+
+        const reminderList = document.getElementById('reminderList');
+        const listItem = document.createElement('li');
+        const dateTime = new Date(timeValue).toLocaleString();
+        listItem.textContent = `${reminderText} - ${dateTime}`;
+        const removeButton = createRemoveButton(listItem, reminderText, dateTime);
+        listItem.appendChild(removeButton);
+        reminderList.appendChild(listItem);
+
+        // Save reminder to localStorage
+        saveReminderToStorage(reminderText, dateTime);
+
+        // Clear input after adding a reminder
+        reminderInput.value = '';
+        reminderTime.value = '';
+
+        // Set timeout for the reminder
+        const timeGap = reminderDateTime - currentTime;
+        if (timeGap > 0) {
+          setTimeout(() => {
+            triggerNotification(reminderText);
+            playAlarmSound();
+          }, timeGap);
+        }
+      } else {
+        alert('Please enter a valid reminder and time!');
+      }
+    }
+
+    function createRemoveButton(item, reminderText, dateTime) {
+      const removeButton = document.createElement('button');
+      removeButton.textContent = 'Remove';
+      removeButton.onclick = function () {
+        item.remove();
+        removeReminderFromStorage(reminderText, dateTime);
+      };
+      return removeButton;
+    }
+
+    function triggerNotification(reminderText) {
+      if ('Notification' in window) {
+        Notification.requestPermission().then(function (permission) {
+          if (permission === 'granted') {
+            const notification = new Notification('Reminder', {
+              body: reminderText,
+            });
+            setTimeout(notification.close.bind(notification), 5000);
+            const reminderInput = document.getElementById('reminderInput');
+            alert("deadline completed for your remainder!", reminderInput);
+          }
+        });
+      }
+    }
+
+    function playAlarmSound() {
+      const alarmSound = document.getElementById('alarm');
+      alarmSound.play();
+    }
+
+    function saveReminderToStorage(reminderText, dateTime) {
+      let reminders = JSON.parse(localStorage.getItem('reminders')) || [];
+      reminders.push({ text: reminderText, date: dateTime });
+      localStorage.setItem('reminders', JSON.stringify(reminders));
+    }
+
+    function loadReminders() {
+      let reminders = JSON.parse(localStorage.getItem('reminders')) || [];
+      const reminderList = document.getElementById('reminderList');
+      reminderList.innerHTML = ''; // Clear existing list items
+      reminders.forEach(function (reminder) {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${reminder.text} - ${reminder.date}`;
+        const removeButton = createRemoveButton(listItem, reminder.text, reminder.date);
+        listItem.appendChild(removeButton);
+        reminderList.appendChild(listItem);
+      });
+    }
+
+    function removeReminderFromStorage(reminderText, dateTime) {
+      let reminders = JSON.parse(localStorage.getItem('reminders')) || [];
+      reminders = reminders.filter(reminder => !(reminder.text === reminderText && reminder.date === dateTime));
+      localStorage.setItem('reminders', JSON.stringify(reminders));
+    }
+  </script>
+  <!-- Bootstrap and jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Back button -->
+  <a href="main.html"><button class="back">Back</button></a>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <!-- Meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- Bootstrap and Font Awesome CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <style>
+      /* General Body Styles */
+    body{ 
+      background-color: #3e578aaf;
+    }
+    /* Sidebar and Wrapper Styles */
+    .wrapper {
+      display: flex;
+      width: 100%;
+    }
+    #sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh; /* Full height of the viewport */
+      width: 250px; /* Initial width for full sidebar */
+      background:  #1b4d89;
+      color: #140101;
+      transition: all 0.3s;
+      z-index: 1;
+      overflow-y: auto;
+    }
+    .sidebar-header {
+      padding: 20px;
+      text-align: center;
+    }
+    .sidebar-header h3 {
+      color: #fff;
+    }
+    .components li a {
+      padding: 10px;
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    .components li a:hover {
+      background: #f8f9fa;
+      color: #343a40;
+    }
+    .components li a:hover,
+    .components li a:focus,
+    .components li a:active {
+      background-color: #78818b5b;
+    }
+  
+    /* Content Area Styles */
+    #content {
+      width: 100%;
+      padding: 20px;
+      margin-left: 250px; 
+    }
+    /* Card Styles */
+    .list-unstyled li a i {
+      margin-right: 10px;
+    }
+    /* Card text and title styles */
+    p.card-text{
+      font-size: 20px; 
+      font-family:Georgia, 'Times New Roman', Times, serif;
+    }
+    h5.card-title{
+      font-size: 25px;  
+      font-family:Georgia, 'Times New Roman', Times, serif;
+      border-radius: 25px;
+    }
+
+    .col-md-6{
+      background-color:#768aa14b;
+    }
+  </style>
+  <title>Main</title>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- Content Area -->
+    <div id="content">
+      <!-- Row for content -->
+      <div class="row">
+        <!-- First Developer Info Card -->
+        <div class="col-md-6">
+          <div class="card">
+             <!-- Developer 1 details -->
+            <div class="card-body">
+              <h5 class="card-title">DEVELOPED BY:</h5>
+            <p class="card-text">Name : Harshitha.T </p>
+            <p class="card-text">Branch :Computer Science and Engineering </p>
+            <p class="card-text">Sec : V Sem ,'A' Sec</p>
+            <p class="card-text">USN:21CS036 </p>
+            <p class="card-text">E-mail ID:harshithaharshitha0923@gmail.com</p>
+            </div>
+          </div>
+        </div>
+        <!-- Second Developer Info Card -->
+        <div class="col-md-6">
+          <div class="card">
+            <!-- Developer 2 details -->
+            <div class="card-body">
+              <h5 class="card-title">DEVELOPED BY:</h5>
+              <p class="card-text">Name :MAHALAKSHMI. MR </p>
+            <p class="card-text">Branch :Computer Science and Engineering </p>
+            <p class="card-text">Sec : V Sem ,'A' Sec</p>
+            <p class="card-text">USN:21CS051 </p>
+            <p class="card-text">E-mail ID:mahalakshmimrj2003@gmail.com</p>
+            </div>
+            </div>
+            <br>
+          </div>
+          <!-- Link Cards -->
+          <div class="row">
+            <!-- To-Do List Link Card -->
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                 <pre><h5 class="card-title">Want to use To-Do List?</h5></pre>
+                  <p class="card-text"><a href="todo.html"
+                    class="btn btn-primary">Get started  </button></p></a>
+                </div>
+              </div>
+            </div>
+            <!-- Second Column Card -->
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  <pre><h5 class="card-title">Want to use Remainder?</h5></pre>
+                  <p class="card-text"><a href="reminder.html"
+                    class="btn btn-primary">Get started  </button></p></a>
+                  <!-- Add your link or content here -->
+                </div>
+              </div>
+              <br>
+            </div>
+          <!-- Third Column Card -->
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body">
+                <pre><h5 class="card-title">Want to use Note-Taking?</h5></pre>
+                      <p class="card-text1"><a href="notetaking.html"
+                    class="btn btn-primary">     Get started  </button></p></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h3>My To-Do</h3>
+      </div>
+        <!-- Sidebar Components -->
+      <ul class="list-unstyled components">
+        <li>
+          <a href="todo.html" onclick="loadContent('todo.html')">
+            <i class="fas fa-tasks"></i> To-Do List
+          </a>
+        </li>
+        <li>
+          <a href="reminder.html" onclick="loadContent('remainder.html')">
+            <i class="fas fa-bell"></i> Reminder
+          </a>
+        </li>
+        <li>
+          <a href="notetaking.html" onclick="loadContent('notetaking.html')">
+            <i class="fas fa-sticky-note"></i> Note Taking
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</body>
+</html>

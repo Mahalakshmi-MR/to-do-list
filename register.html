@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <!-- Meta tags for character set and responsive viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit:no">
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Register</title>
+<style>
+     /* General Body Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1b4d89;
+}
+/* Container Styles */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+/* Login Box Styles */
+.login-box {
+    background-color:#768aa14b;
+    border: 1px solid #9badbd;
+    padding: 20px;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px  rgba(0, 0, 0, 0.1);
+    width: 400px;
+    flex-direction: column;
+    align-items: center;
+}
+/* Placeholder Styles */
+::placeholder {
+    color: rgb(0, 0, 0);
+    opacity: 1;
+}
+::-ms-input-placeholder {
+    color: rgb(7, 7, 7);
+}
+ /* Heading Styles */
+h1 {
+font-family:'brush script MT';
+background-color: linear-gradient(135deg,#153677,#05baf1);
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #f8f4f4;
+}
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%;
+}
+/* Input and Button Styles */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+button {
+    width: calc(100% - 5px);
+    padding: 11px;
+    margin-bottom: 15px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    box-sizing:border-box;
+    background-color:linear-gradient(135deg,#153677,#05baf1);
+    color: #080808;
+    border: none;
+    cursor: pointer;
+}
+/* Button Purple Styles */
+.btn-purple {
+    background-color: #fff;
+    color: rgb(17, 17, 17);}
+
+    .btn-purple:hover {
+        background-color: #fff;
+        border:#1b4d89; ;
+    }
+</style>
+
+</head>
+<body >
+    <!-- Container for Login Box -->
+    <div class="container">
+         <!-- Login Box Section -->
+        <div class="login-box">
+            <!-- Heading -->
+            <h1>Welcome</h1>
+             <!-- Registration Form -->
+            <form>
+                <input type="text" placeholder="Username ">
+                <input type="email" placeholder="email ">
+                <input type="password" placeholder="Password">
+                <input type="password" placeholder="Confirm-Password ">
+               <button type="button" class=' btn btn-purple 'onclick="login()">Register</button>
+            </form>
+        </div>
+    </div>
+    <!-- JavaScript function for registration -->
+   <script>
+        function login() {
+          // Redirect to main.html
+            window.location.href = "main.html";
+        }
+    </script>
+</body>
+</html>

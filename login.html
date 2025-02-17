@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character set and responsive viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>login page</title>
+<style>
+    /* General Body Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color:#1b4d89;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+/* Container styles */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+  /* Placeholder Styles */
+::placeholder {
+    color: rgb(0, 0, 0);
+    opacity: 1;
+}
+::-ms-input-placeholder {
+    color: rgb(7, 7, 7);
+}
+  /* Login Box Styles */
+.login-box {
+    background-color:#768aa14b;
+    border: 1px solid #9badbd;
+    padding: 20px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px  rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+ /* Heading Styles */
+h1 {
+font-family:'brush script MT';
+background-color:linear-gradient(135deg,#ffff,#05baf1);
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #faf7f7;   
+}
+/* Input and Button Styles */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+button {
+background-color: #fff;
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+button {
+    background-color:#fff;
+    color: #d6d6d6;
+    border: none;
+    cursor: pointer;
+}
+ /* Separator Styles */
+.separator {
+    margin: 20px 0;
+    position: relative;
+}
+.separator::before,
+.separator::after {   
+    display: block;
+    border-top: 1px solid #dbdbdb;
+    position: absolute;
+    top: 50%;
+    width: 45%;
+}
+.separator::before {
+    right: 5%;
+}
+.separator::after {
+    left: 5%;
+}
+ /* Signup Link Styles */
+.signup-link a.highlight {
+    color: black;
+}
+.signup-link a.highlight:hover {
+    color:rgb(245, 243, 243);
+    font-size:16px;
+    text-decoration: none;
+}
+ /* Hover Border Styles */
+.hover-border {
+    border: 1px solid #f8f8f8; 
+    transition: border-color 0.3s ease; 
+  }
+.hover-border:hover {
+    border-color: #fff; 
+  }
+/* Button Purple Styles */
+.btn-purple {
+    background-color: #f9f9fa;
+    color: rgb(15, 15, 15);}
+.btn-purple:hover {
+        background-color: #fff;
+    }
+</style>
+</head>
+
+<body >
+    <!-- Container for Login Box -->
+    <div class="container">
+        <!-- Container for Login Box -->
+        <div class="login-box">
+              <!-- Heading -->
+            <h1>My To-Do</h1>
+             <!-- Login Form -->
+            <form>
+                <input type="text" placeholder="Username " class="hover-border" required>
+                <input type="password" placeholder="Password" class="hover-border"  minlength="8" maxlength="20"  required>
+                <button type="button" class=' btn btn-purple 'onclick="login()">Log in</button>
+            </form>
+            <!-- Separator -->
+            <div class="separator">
+                <span background-color: #ff9aa2;>OR</span>
+            </div>
+            <!-- Signup Link Section -->
+            <div class="signup-link">
+                Don't have an account? 
+                <a class="highlight"
+                 href="register.html">Register</a>
+            </div>
+        </div>
+    </div>
+    <!-- JavaScript function for login -->
+    <script>
+        function login() {
+            // Predefined sample credentials
+            const sampleUsername = "Rani";
+            const samplePassword = "Rani@2003";
+        
+            // Get the input values entered by the user
+            const enteredUsername = document.querySelector('input[type="text"]').value.trim(); // Trim to remove spaces
+            const enteredPassword = document.querySelector('input[type="password"]').value.trim();
+        
+            // Check if entered credentials match the sample
+            if (enteredUsername === sampleUsername && enteredPassword === samplePassword) {
+                // If credentials match, display a message and try to redirect
+                console.log("Credentials matched. Redirecting...");
+                window.location.href = "main.html";
+            } else {
+                // If credentials don't match, display an error message
+                alert("Invalid username or password. Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>

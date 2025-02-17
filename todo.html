@@ -1,0 +1,234 @@
+<html>
+<head>
+<title> To-Do List</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins', sans-serif;
+    box-sizing: border-box;
+}
+.container{
+width: 100%;
+min-height:100vh;
+background: #1b4d89;
+padding: 10px;
+}
+.todo-app{
+    width: 100%;
+    max-width: 540px;
+    background:#768aa14b;
+    border: 1px solid #88aed0;
+    margin: 100px auto 20px;
+    padding: 40px 30px 70px;
+    border-radius: 10px;
+}
+.todo-app h2{
+color: #eceef1;
+display: flex;
+align-items: center;
+margin-bottom: 20px;
+}
+.todo-app h2 img{
+    width: 30px;
+    margin-left: 10px;
+}
+.row {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ background: #edeef0;
+ border-radius: 30px;
+ padding-left: 20px;
+ margin-bottom: 25px;
+}
+input { 
+ flex: 1;
+ border: none;
+ outline: none;
+ background: transparent;
+ padding: 10px;
+}
+button {
+border: none;
+outline: none;
+padding: 16px 50px;
+background:  #1b4d89;
+font-size: 16px;
+cursor: pointer;
+border-radius: 40px;
+}
+ul li{
+    list-style: none;
+    font-size: 17px;
+    padding: 12px 8px 12px 50px;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+}
+ul li::before{
+    content: '';
+    position: absolute;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    background-image: url(images/unchecked.png);
+    background-size: cover;
+    background-position: center;
+    top: 12px;
+    left: 8px;
+}
+ul li.checked{
+    color: #faf4f4;
+    text-decoration:line-through;
+
+}
+ul li.checked::before{
+    background-image: url(images/images.png);
+
+}
+
+ul li span{
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 40px;
+    height:40px;
+    font-size: 22px;
+    color: #fffbfb;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+}
+ul li span:hover{
+    background: #edeef0;
+    color:rgb(3, 3, 3);
+}
+.back{
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .back:hover {
+    background-color: #fff
+  }
+</style>
+</head>
+<body>
+     <!-- Main Container -->
+    <div class="container">
+        <!-- To-Do App Container -->
+        <div class="todo-app">
+             <!-- To-Do App Header -->
+            <h2>
+            To-Do List <img src="images/icon.png" alt="icon">
+            </h2>
+            <!-- Input Row for Adding Task -->
+            <div class="row">
+                <input type="text" id="input-box" placeholder="Add your task">
+                <button onclick="addTask()">Add</button>
+            </div>
+            <ul id="list-container">
+              <!-- list item dynamically added -->
+            </ul>
+        </div>
+    </div>
+    <!-- External Sortable Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+<script>
+    const inputBox=document.getElementById("input-box");
+    const listContainer=document.getElementById("list-container");
+    function addTask(){
+        if(inputBox.value === ''){
+            alert("Write Something Before You Add!");
+        }
+        else{
+            let li=document.createElement("li");
+            li.innerHTML=inputBox.value;
+            listContainer.appendChild(li);
+            let span=document.createElement("span");
+            span.innerHTML="\u00d7";
+            li.appendChild(span);
+            li.setAttribute("draggable", true);
+        li.addEventListener("dragstart", drag);
+        }
+        inputBox.value="";
+        saveData();
+    }
+    listContainer.addEventListener("click",function(e){
+        if(e.target.tagName ==="LI"){
+            e.target.classList.toggle("checked");
+            saveData();        }
+        else if(e.target.tagName ==="SPAN"){
+            e.target.parentElement.remove();
+            saveData();
+        }
+    },false);
+   
+    let draggingElement = null;
+
+    function drag(event) {
+        draggingElement = event.target;
+        event.dataTransfer.setData('text/plain', 'dummy');
+        setTimeout(() => {
+            event.target.classList.add('dragging');
+        }, 0);
+    }
+
+    document.addEventListener('dragover', (event) => {
+        event.preventDefault();
+    });
+
+    document.addEventListener('drop', (event) => {
+        if (draggingElement) {
+            const afterElement = getDragAfterElement(event.clientY);
+            const parent = draggingElement.parentNode;
+            if (afterElement) {
+                parent.insertBefore(draggingElement, afterElement);
+            } else {
+                parent.appendChild(draggingElement);
+            }
+            draggingElement.classList.remove('dragging');
+            draggingElement = null;
+            saveData(); // Save data after drop
+        }
+    });
+
+    function getDragAfterElement(y) {
+        const draggableElements = [...document.querySelectorAll('#list-container li:not(.dragging)')];
+        return draggableElements.reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offset = y - box.top - box.height / 2;
+            if (offset < 0 && offset > closest.offset) {
+                return { offset: offset, element: child };
+            } else {
+                return closest;
+            }
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
+
+    function saveData() {
+        localStorage.setItem("data", listContainer.innerHTML);
+    }
+    function showTask(){
+    listContainer.innerHTML=localStorage.getItem("data");
+    }
+    showTask();
+    new Sortable(listContainer, {
+        animation: 150, 
+        onEnd: function (evt) {
+          console.log('Moved:', evt.item.textContent, 'from index', evt.oldIndex, 'to index', evt.newIndex);
+          saveData();
+        }
+      });
+</script>
+ <!-- Back Button -->
+<a href="main.html"><button class="back">Back</button></a>
+</body>
+</html>
+

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My To-Do</title>
+     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!-- Styling -->
+    <style>
+        /* General Body Styles */
+      body {
+        background-color:#1b4d89;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+      font-family:'brush MT script ';
+      font-size:20px;
+      }
+       /* Header Styles */
+      h1{
+        font-size:50px;
+        font-family:'Times New Roman';
+      }
+       /* Centered Text */
+      .center {
+        text-align: center;
+        color:#f7f7f7;
+        position: absolute;
+        top: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      /* Placeholder Styles */
+      ::placeholder {
+        color: rgb(0, 0, 0);
+        opacity: 1;
+    }
+    ::-ms-input-placeholder {
+        color: rgb(7, 7, 7);
+    }
+       /* Card Styles */
+      .card {
+        background-color:#ffffffbe;
+        position: relative;
+        padding: 20px;
+        width: 300px;
+        height: 200px;
+        margin: 20px;
+      }
+
+      .card-container {
+        border-radius:20px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        margin-top: 20px;
+      }
+      .card {
+        color:#0c0c0c;
+        position: relative;
+        padding: 20px;
+        width: 300px;
+        height: 200px;
+        margin: 20px;
+        border-radius: 20px;
+        background-size: cover;
+        background-position: center;
+        transition: border-color 0.3s;}
+        .card:hover {
+          border-color: #3503e9; 
+        }
+          /* Button Styles */
+        .btn{
+          background-color:rgb(255, 255, 255);
+          border: 1px solid #88aed0;
+          padding: 2px;
+          text-align: center;
+          border-radius: 12px;
+          box-shadow: 0 4px 12px  rgba(0, 0, 0, 0.1);
+          width:100px;
+      }
+    </style>
+  </head>
+
+  <body>
+     <!-- Header Section -->
+    <div class="center">
+      <h1>Welcome To My To-Do App!</h1>
+       <!-- Button to Get Started -->
+      <i class="fas fa-arrow-right fa-2x">
+       <a href="login.html"
+       class="btn">Get started  &rarr;</button>
+      </a>
+      </i>
+    </div>
+       <!-- Button to Get Started -->
+    <div class="card-container">
+      
+      <div class="card">
+        <div class="card-body">
+          <u><h5 class="card-title">To-Do List:</h5></u>
+          <p class="card-text">Never miss a task! Add task to your to-do's and stay organized. </p>
+        </div>
+      </div>
+      <!-- Reminders Card -->
+      <div class="card">
+        <div class="card-body">
+          <u><h5 class="card-title">Reminders:</h5></u>
+          <p class="card-text">Never forgets a deadline!Set reminders for your date.</p>
+        </div>
+      </div>
+   <!-- Note Taking Card -->
+      <div class="card">
+        <div class="card-body">
+          <u><h5 class="card-title">Note Taking:</h5> </u>
+          <p class="card-text">Take notes and keep everything in one place.</p>
+        </div>
+      </div>
+    </div>
+<!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
